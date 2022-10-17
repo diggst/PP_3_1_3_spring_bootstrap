@@ -27,7 +27,7 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User)o;
 
-        if (userService.findByUsername(user.getUsername()).isEmpty()) {
+        if (userService.findByUsername(user.getEmail()).isEmpty()) {
             return;
         }
 

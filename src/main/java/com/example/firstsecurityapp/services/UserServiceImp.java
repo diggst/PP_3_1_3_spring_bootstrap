@@ -63,7 +63,7 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public Optional <User> findByUsername (String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByEmail(username);
     }
 
     @Override

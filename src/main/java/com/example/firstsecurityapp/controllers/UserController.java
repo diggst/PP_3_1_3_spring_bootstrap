@@ -15,7 +15,7 @@ public class UserController {
     public String index(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImp userDetails = (UserDetailsImp)authentication.getPrincipal();
-        model.addAttribute("users", Collections.singletonList(userDetails.getUser()));
+        model.addAttribute("user", userDetails.getUser());
         return "/user";
     }
 }

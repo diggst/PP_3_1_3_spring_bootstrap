@@ -26,7 +26,7 @@ public class User {
 
     @Column(name = "username", nullable = false)
     @NotNull
-    private String username;
+    private String email;
 
     @Column(name = "password", nullable = false)
     @NotNull
@@ -41,9 +41,6 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
-    @Column(name = "email")
-    private String email;
-
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (
             name = "user_role",
@@ -55,8 +52,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String name, String lastName, Byte age, String email, List<Role> roles) {
-        this.username = username;
+    public User(String password, String name, String lastName, Byte age, String email, List<Role> roles) {
         this.password = password;
         this.name = name;
         this.lastName = lastName;
@@ -109,14 +105,6 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -137,7 +125,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -1,14 +1,18 @@
 package com.example.firstsecurityapp.controllers;
 
 import com.example.firstsecurityapp.model.User;
+import com.example.firstsecurityapp.security.UserDetailsImp;
 import com.example.firstsecurityapp.services.UserService;
 import com.example.firstsecurityapp.utils.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +34,7 @@ public class AdminController {
 
     @GetMapping()
     public String index(Model model) {
+        model.addAttribute("user", getCurrentUser());
         model.addAttribute("users", userService.index());
         return "admin/index";
     }
@@ -37,6 +42,7 @@ public class AdminController {
     @GetMapping("/new")
     public String createForm(User newUser, Model model) {
         model.addAttribute("user", newUser);
+        model.addAttribute("currentUser", getCurrentUser());
         model.addAttribute("listRoles", userService.listRoles());
         return "admin/new";
     }
@@ -70,5 +76,11 @@ public class AdminController {
     public String delete(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
+    }
+
+    private User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImp userDetails = (UserDetailsImp)authentication.getPrincipal();
+        return userDetails.getUser();
     }
 }
