@@ -36,6 +36,7 @@ public class AdminController {
     public String index(Model model) {
         model.addAttribute("user", getCurrentUser());
         model.addAttribute("users", userService.index());
+        model.addAttribute("listRoles", userService.listRoles());
         return "admin/index";
     }
 
@@ -59,15 +60,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        model.addAttribute("listRoles", userService.listRoles());
-        return "admin/edit";
-    }
-
-    @PostMapping("/edit")
-    public String update(User user) {
+    @PatchMapping(value = "/edit/{id}")
+    public String userUpdate(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/admin";
     }
