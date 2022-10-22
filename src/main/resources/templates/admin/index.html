@@ -136,9 +136,8 @@
                                                                     <select multiple
                                                                             class="form-control form-control-sm"
                                                                             id="roles" name="roles">
-                                                                        <option selected
+                                                                        <option th:selected="*{user.roles}"
                                                                             th:each="role : ${listRoles}"
-                                                                            th:selected="*{user.roles}"
                                                                             th:text="${role}"
                                                                             th:value="${role.getId()}"> Role
                                                                         </option>

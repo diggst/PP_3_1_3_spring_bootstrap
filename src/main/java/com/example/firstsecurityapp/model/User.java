@@ -1,7 +1,5 @@
 package com.example.firstsecurityapp.model;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,8 +39,8 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
-    @ManyToMany (fetch = FetchType.EAGER)
-    @JoinTable (
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
@@ -61,7 +59,7 @@ public class User {
         this.roles = roles;
     }
 
-    private void addRole(Role role){
+    private void addRole(Role role) {
         roles.add(role);
     }
 

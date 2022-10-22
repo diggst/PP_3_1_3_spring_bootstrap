@@ -1,6 +1,6 @@
 package com.example.firstsecurityapp.config;
 
-import com.example.firstsecurityapp.security.MySimpleUrlAuthenticationSuccessHandler;
+import com.example.firstsecurityapp.security.MyAuthenticationSuccessHandler;
 import com.example.firstsecurityapp.services.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new MySimpleUrlAuthenticationSuccessHandler();
+        return new MyAuthenticationSuccessHandler();
     }
 }

@@ -61,13 +61,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional <User> findByUsername (String username) {
         return userRepository.findByEmail(username);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Role> listRoles() {
         return roleRepository.findAll();
     }

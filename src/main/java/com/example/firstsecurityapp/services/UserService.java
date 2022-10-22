@@ -2,7 +2,6 @@ package com.example.firstsecurityapp.services;
 
 import com.example.firstsecurityapp.model.Role;
 import com.example.firstsecurityapp.model.User;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
