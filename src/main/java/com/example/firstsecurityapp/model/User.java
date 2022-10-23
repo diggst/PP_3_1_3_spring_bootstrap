@@ -123,15 +123,7 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                '}';
+    public String getRolesString() {
+        return roles.toString().replaceAll("^\\[|\\]$", "");
     }
 }

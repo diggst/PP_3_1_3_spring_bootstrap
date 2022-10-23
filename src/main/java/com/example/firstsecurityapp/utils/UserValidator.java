@@ -31,6 +31,6 @@ public class UserValidator implements Validator {
             return;
         }
 
-        errors.rejectValue("username", "", "Username already exists");
+        errors.rejectValue("email", "", "Username already exists");
     }
 }

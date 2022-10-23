@@ -12,7 +12,7 @@
         <p class="navbar-brand text-white">
             <b><span class="align-middle" th:text="${currentUser.getEmail()}"></span></b>
             <span class="align-middle">with roles:</span>
-            <span class="align-middle" th:text="${currentUser.getRoles()}"></span>
+            <span class="align-middle" th:text="${currentUser.getRolesString()}"></span>
         </p>
 
         <form th:action="@{/logout}" method="post">
@@ -76,15 +76,20 @@
                             <i class="bi bi-eye-slash" id="togglePassword"></i>
                             <br/>
 
-                            <label class="col-4 col-form-label">Roles: </label>
-                            <div class="col-8">
-                                <th:block th:each="role: ${listRoles}">
-                                    <input type="checkbox" th:field="*{roles}"
-                                           th:text="${role}" th:value="${role.id}" class="m-2" />
-                                </th:block>
-                            </div>
+                            <label for="roles"><b>Role</b></label>
+                            <br>
+                            <select multiple
+                                    class="form-control form-control-sm"
+                                    id="roles" name="roles">
+                                <option
+                                        th:each="role : ${listRoles}"
+                                        th:text="${role}"
+                                        th:value="${role.getId()}"> Role
+                                </option>
+                            </select>
+                            </br>
 
-                            <input type="submit" value="Create">
+                            <button type="submit" class="btn btn-success btn-lg">Add new User</button>
                         </form>
                     </div>
                 </div>

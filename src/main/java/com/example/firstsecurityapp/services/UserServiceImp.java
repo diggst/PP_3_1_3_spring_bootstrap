@@ -16,13 +16,11 @@ import java.util.Optional;
 public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImp(UserRepository userDAO, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userDAO;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -64,11 +62,5 @@ public class UserServiceImp implements UserService {
     @Transactional(readOnly = true)
     public Optional <User> findByUsername (String username) {
         return userRepository.findByEmail(username);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Role> listRoles() {
-        return roleRepository.findAll();
     }
 }

@@ -2,6 +2,7 @@ package com.example.firstsecurityapp.controllers;
 
 import com.example.firstsecurityapp.model.User;
 import com.example.firstsecurityapp.security.UserDetailsImp;
+import com.example.firstsecurityapp.services.RoleService;
 import com.example.firstsecurityapp.services.UserService;
 import com.example.firstsecurityapp.utils.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,18 +27,20 @@ public class AdminController {
 
     private final UserService userService;
     private final UserValidator userValidator;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService, UserValidator userValidator) {
+    public AdminController(UserService userService, UserValidator userValidator, RoleService roleService) {
         this.userService = userService;
         this.userValidator = userValidator;
+        this.roleService = roleService;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("user", getCurrentUser());
         model.addAttribute("users", userService.index());
-        model.addAttribute("listRoles", userService.listRoles());
+        model.addAttribute("listRoles", roleService.listRoles());
         return "admin/index";
     }
 
@@ -44,7 +48,7 @@ public class AdminController {
     public String createForm(User newUser, Model model) {
         model.addAttribute("user", newUser);
         model.addAttribute("currentUser", getCurrentUser());
-        model.addAttribute("listRoles", userService.listRoles());
+        model.addAttribute("listRoles", roleService.listRoles());
         return "admin/new";
     }
 
@@ -66,7 +70,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
