@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -49,12 +50,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String password, String name, String lastName, Byte age, String email, List<Role> roles) {
+    public User(String password, String name, String lastName, Byte age, String email, Set<Role> roles) {
         this.password = password;
         this.name = name;
         this.lastName = lastName;
@@ -115,11 +116,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

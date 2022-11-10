@@ -1,4 +1,4 @@
-package com.example.firstsecurityapp.services;
+package com.example.firstsecurityapp.security;
 
 import com.example.firstsecurityapp.model.User;
 import com.example.firstsecurityapp.repositories.UserRepository;

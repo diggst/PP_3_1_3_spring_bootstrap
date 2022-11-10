@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Collections;
-
 @Controller
 public class UserController {
     @GetMapping("/user")
@@ -16,6 +14,6 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImp userDetails = (UserDetailsImp)authentication.getPrincipal();
         model.addAttribute("user", userDetails.getUser());
-        return "/user";
+        return "user";
     }
 }

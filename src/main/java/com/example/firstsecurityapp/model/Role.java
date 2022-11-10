@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -24,7 +24,7 @@ public class Role implements GrantedAuthority {
     private String roleName;
 
     @ManyToMany (mappedBy = "roles")
-    private List<User> users;
+    private Set<User> users;
 
     public Role() {
     }
@@ -55,11 +55,11 @@ public class Role implements GrantedAuthority {
         this.roleName = role;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 

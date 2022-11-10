@@ -1,7 +1,7 @@
 package com.example.firstsecurityapp.config;
 
 import com.example.firstsecurityapp.security.MyAuthenticationSuccessHandler;
-import com.example.firstsecurityapp.services.UserDetailsServiceImp;
+import com.example.firstsecurityapp.security.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

@@ -5,6 +5,7 @@ import com.example.firstsecurityapp.model.User;
 import com.example.firstsecurityapp.repositories.RoleRepository;
 import com.example.firstsecurityapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     public UserServiceImp(UserRepository userDAO, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userDAO;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     @Override
